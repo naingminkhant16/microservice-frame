@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  user_service:
+    build: ./user_service
+    ports:
+      - "3000:3000"
+    networks:
+      - microservice-network
+
+  payment_service:
+    build: ./payment_service
+    ports:
+      - "8080:8080"
+    networks:
+      - microservice-network
+
+  api_gateway:
+    build: ./api_gateway
+    ports:
+      - "8000:8000"
+    networks:
+      - microservice-network
+
+networks:
+  microservice-network:
+    driver: bridge
